@@ -20,9 +20,20 @@ function create() {
     this.physics.add.collider(gameState.stickman, platform);
 
     const drop = this.physics.add.group();
-    const coordinates = Math.random() * 450;
-    var x = 1;
-    
+
+function fireDrops() {
+    const coordinates = Math.random() * 500;
+    drop.create(coordinates, 0, "lavadrop")
+}
+
+const fireLoop = 
+this.time.addEvent({
+    delay: 1050,
+    callback: fireDrops,
+    callbackScope: this,
+    loop: true
+})
+
 }
 
 function update() {
@@ -31,6 +42,9 @@ function update() {
     }
     else if(gameState.keys.left.isDown) {
         gameState.stickman.setVelocityX(-160);
+    }
+    else {
+        gameState.stickman.setVelocityX(0);
     }
 }
 
