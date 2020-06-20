@@ -24,6 +24,15 @@ function create() {
 
     const drop = this.physics.add.group();
 
+    this.physics.add.collider(gameState.stickman, drop, () => {
+        fireLoop.destroy();
+        this.physics.pause();
+        this.add.text(310, 100, "The End!", {
+            fontSize: "50px", fill: "#57949e"
+        })
+    })
+
+
     
 
 function fireDrops() {
@@ -33,7 +42,7 @@ function fireDrops() {
 
 const fireLoop = 
 this.time.addEvent({
-    delay: 2050,
+    delay: 2025,
     callback: fireDrops,
     callbackScope: this,
     loop: true
